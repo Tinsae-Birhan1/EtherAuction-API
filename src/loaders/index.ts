@@ -1,12 +1,14 @@
 import mongooseLoader from './database';
 import expressLoader from './express';
+import logger from '../config/logger';
+
 
 const initApp = async (app: any): Promise<void> => {
   try {
     await mongooseLoader();
-    console.log(`Mongoose initiated.`);
+    logger.info(`Mongoose initiated.`);
     await expressLoader(app);
-    console.log(`Express app initiated.`);
+    logger.info(`Express app initiated.`);
   } catch (error) {
     console.error('Error initializing app:', error);
     throw error;

@@ -1,5 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 import { DB_CONNECTION } from '../config/config';
+import logger from '../config/logger';
+
 
 const connectToDatabase = async (): Promise<mongoose.Connection> => {
   try {
@@ -7,7 +9,7 @@ const connectToDatabase = async (): Promise<mongoose.Connection> => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as ConnectOptions);
-    console.log('Connected to MongoDB');
+    logger.info('Connected to MongoDB');
     return connection.connection;
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
