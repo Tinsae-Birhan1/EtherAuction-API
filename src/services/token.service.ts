@@ -65,6 +65,9 @@ const generateAuthTokens = async (userId: string) => {
   };
 };
 
+const blacklistToken = async (token: string) => {
+  await Token.updateOne({ token }, { blacklisted: true });
+};
 
 
 
@@ -73,6 +76,7 @@ const tokenService = {
   generateAuthTokens,
   verifyToken,
   saveToken,
+  blacklistToken,
   };
   
   export default tokenService;
