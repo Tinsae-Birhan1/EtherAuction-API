@@ -4,7 +4,7 @@ import catchAsync from '../utils/catchAsync';
 import { userService, tokenService, authService } from '../services';
 
 const register = catchAsync(async (req: Request, res: Response) => {
-  // create a user
+
   const user = await userService.createUser(req.body);
   // generate token
   const tokens = await tokenService.generateAuthTokens(user.id);
@@ -23,13 +23,18 @@ const login = catchAsync(async (req: Request, res: Response) => {
   res.status(httpStatus.OK).send({ user, tokens });
 });
 
-
+const refreshToken = catchAsync(async (req, res) => {
+    const tokens = await authService.refreshAuthToken(req.body.refreshToken);
+    res.status(httpStatus.OK).send({ ...tokens });
+  });
+  
 
 
 
 const authController = {
     register,
     login,
+    refreshToken,
   };
   
   export default authController;
