@@ -18,4 +18,9 @@ router.post(
   '/auth/refresh-token',
   authController.refreshToken as RequestHandler,
 );
+
+router.post(
+  '/auth/logout', 
+  authController.logout as RequestHandler, 
+);
 export default router;

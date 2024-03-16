@@ -28,13 +28,18 @@ const refreshToken = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send({ ...tokens });
   });
   
-
+  const logout = catchAsync(async (req: Request, res: Response) => {
+    const { refreshToken } = req.body;
+    await tokenService.blacklistToken(refreshToken);
+    res.status(httpStatus.OK).send({ message: 'Logged out successfully' });
+  });
 
 
 const authController = {
     register,
     login,
     refreshToken,
+    logout,
   };
   
   export default authController;
