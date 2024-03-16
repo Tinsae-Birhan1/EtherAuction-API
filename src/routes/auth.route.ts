@@ -9,5 +9,10 @@ router.post(
   authController.register as RequestHandler,
 );
 
+router.post(
+  '/auth/login',
+  authController.login as RequestHandler,
+);
+
 
 export default router;
