@@ -16,3 +16,14 @@ export const jwtRefreshExpirationDays: number = parseInt(envVars.JWT_REFRESH_EXP
 
 
 
+export const cspOptions = {
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    scriptSrc: ["'self'", "'unsafe-inline'"],
+    fontSrc: ["'self'", 'fonts.gstatic.com'],
+  },
+};
+
+
+
