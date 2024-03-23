@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuctionService } from '../services/auction.service';
+import { AuctionService } from '../services';
 
 export class AuctionController {
   private auctionService: AuctionService;

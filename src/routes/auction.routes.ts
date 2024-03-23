@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
-import { AuctionController } from '../controllers/auction.controller';
-import { AuctionService } from '../services/auction.service';
+import { AuctionController } from '../controllers';
+import { AuctionService } from '../services';
 
 const router = express.Router();
 
