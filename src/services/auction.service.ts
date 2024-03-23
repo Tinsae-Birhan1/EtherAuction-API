@@ -53,4 +53,21 @@ export class AuctionService {
     }
   }
  
+  public async getAuctionDetails(): Promise<any> {
+    try {
+      const highestBid = await this.contract.methods.highestBid().call();
+      const highestBidder = await this.contract.methods.highestBidder().call();
+      const auctionEndTime = await this.contract.methods.auctionEndTime().call();
+      const auctionEnded = await this.contract.methods.ended().call();
+
+      return {
+        highestBid: this.web3.utils.fromWei(highestBid, 'ether'),
+        highestBidder,
+        auctionEndTime: new Date(parseInt(auctionEndTime) * 1000),
+        auctionEnded
+      };
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
