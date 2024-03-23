@@ -70,4 +70,12 @@ export class AuctionService {
       throw new Error(error.message);
     }
   }
+
+  public async getAuctionHistory(): Promise<any> {
+    try {
+      return await AuctionHistory.find();
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }

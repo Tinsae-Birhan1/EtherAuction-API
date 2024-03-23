@@ -40,4 +40,13 @@ export class AuctionController {
       res.status(400).json({ error: error.message });
     }
   };
+
+  public getAuctionHistory = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const history = await this.auctionService.getAuctionHistory();
+      res.status(200).json(history);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
 }
