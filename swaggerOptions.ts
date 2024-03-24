@@ -25,7 +25,7 @@ const options = {
       ...userPaths,
       ...auctionPaths,
     },
-
+    
     servers: [
       {
         url: 'http://localhost:4000', 
