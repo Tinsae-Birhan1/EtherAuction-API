@@ -42,7 +42,6 @@ export class AuctionService {
     return amount > currentHighestBid;
     }
 
-
   private async saveBidToHistory(bidder: string, amount: number): Promise<void> {
     try {
       const bid = new AuctionHistory({ bidder, amount, timestamp: new Date() });
