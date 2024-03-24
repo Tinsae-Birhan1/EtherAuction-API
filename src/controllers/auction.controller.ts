@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { AuctionService } from '../services';
 
-
 export class AuctionController {
   private auctionService: AuctionService;
 
@@ -24,4 +23,13 @@ export class AuctionController {
     }
   };
 
+  public endAuction = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const result = await this.auctionService.endAuction();
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
 }
+

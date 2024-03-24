@@ -2,7 +2,6 @@ import express, { Router } from 'express';
 import { AuctionController } from '../controllers';
 import { AuctionService } from '../services';
 
-
 const router = express.Router();
 
 export class AuctionRoutes {
@@ -17,6 +16,8 @@ export class AuctionRoutes {
 
   private initializeRoutes(): void {
     this.router.post('/place-bid', this.auctionController.placeBid);
+    this.router.post('/end-auction', this.auctionController.endAuction);
+
   }
 }
 

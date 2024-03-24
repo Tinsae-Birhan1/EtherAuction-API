@@ -2,7 +2,6 @@ import Web3 from 'web3';
 import AuctionABI from '../ethereum/index'; 
 import {AuctionHistory} from '../models';
 
-
 export class AuctionService {
   private web3: Web3;
   private contract: any; 
@@ -26,7 +25,16 @@ export class AuctionService {
     }
   }
 
-  
+  public async endAuction(): Promise<any> {
+    try {
+      const accounts = await this.web3.eth.getAccounts();
+      await this.contract.methods.auctionEnd().send({ from: accounts[0] });
+      return { message: 'Auction ended successfully' };
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
 
     public async checkBidValidity(amount: number): Promise<boolean> {
     const currentHighestBidString = await this.contract.methods.highestBid().call();
@@ -45,4 +53,5 @@ export class AuctionService {
       throw new Error(error.message);
     }
   }
+
 }

@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import cors from 'cors';
 import authRouter from '../routes/auth.route';
+import {AuctionRoutes} from '../routes/auction.routes';
 import { errorHandler, errorConverter } from '../middlewares/error';
 import ApiError from '../utils/ApiError';
 import { jwtStrategy } from '../config/passport';
@@ -34,6 +35,8 @@ export default async function setup(app: Application): Promise<Application> {
   }
 
   app.use(authRouter);
+  const auctionRoutes = new AuctionRoutes();
+  app.use(auctionRoutes.router);
   app.use((req: Request, res: Response, next: NextFunction) => {
     next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
   });
