@@ -1,6 +1,7 @@
 import Web3 from 'web3';
 import AuctionABI from '../ethereum/index'; 
-import {AuctionHistory} from '../models/auction.model';
+import {AuctionHistory} from '../models';
+
 
 export class AuctionService {
   private web3: Web3;
@@ -35,37 +36,6 @@ export class AuctionService {
     }
 
 
-  public async getAuctionDetails(): Promise<any> {
-    try {
-      const highestBid = await this.contract.methods.highestBid().call();
-      const highestBidder = await this.contract.methods.highestBidder().call();
-      const auctionEndTime = await this.contract.methods.auctionEndTime().call();
-      const auctionEnded = await this.contract.methods.ended().call();
-
-      return {
-        highestBid: this.web3.utils.fromWei(highestBid, 'ether'),
-        highestBidder,
-        auctionEndTime: new Date(parseInt(auctionEndTime) * 1000),
-        auctionEnded
-      };
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
-
-  public async getAuctionStatistics(): Promise<any> {
-    try {
-      const totalBids = await this.contract.methods.totalBids().call();
-      const totalVolume = await this.contract.methods.totalVolume().call();
-
-      return {
-        totalBids,
-        totalVolume: this.web3.utils.fromWei(totalVolume, 'ether')
-      };
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
 
   private async saveBidToHistory(bidder: string, amount: number): Promise<void> {
     try {
