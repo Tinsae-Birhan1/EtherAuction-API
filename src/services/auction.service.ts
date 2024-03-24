@@ -2,6 +2,7 @@ import Web3 from 'web3';
 import AuctionABI from '../ethereum/index'; 
 import {AuctionHistory} from '../models';
 
+
 export class AuctionService {
   private web3: Web3;
   private contract: any; 
@@ -35,7 +36,7 @@ export class AuctionService {
     }
 
 
-  
+
   private async saveBidToHistory(bidder: string, amount: number): Promise<void> {
     try {
       const bid = new AuctionHistory({ bidder, amount, timestamp: new Date() });
