@@ -35,6 +35,7 @@ export class AuctionService {
     }
   }
 
+
     public async checkBidValidity(amount: number): Promise<boolean> {
     const currentHighestBidString = await this.contract.methods.highestBid().call();
     const currentHighestBid = parseFloat(this.web3.utils.fromWei(currentHighestBidString, 'ether'));
@@ -43,7 +44,7 @@ export class AuctionService {
     }
 
 
-  
+
   private async saveBidToHistory(bidder: string, amount: number): Promise<void> {
     try {
       const bid = new AuctionHistory({ bidder, amount, timestamp: new Date() });
@@ -52,5 +53,5 @@ export class AuctionService {
       throw new Error(error.message);
     }
   }
- 
+
 }
