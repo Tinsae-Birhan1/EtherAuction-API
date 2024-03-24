@@ -17,6 +17,8 @@ export class AuctionRoutes {
   private initializeRoutes(): void {
     this.router.post('/place-bid', this.auctionController.placeBid);
     this.router.post('/end-auction', this.auctionController.endAuction);
+    this.router.get('/auction-details', this.auctionController.getAuctionDetails);
+   
 
   }
 }
