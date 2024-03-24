@@ -2,7 +2,6 @@ import express, { Router } from 'express';
 import { AuctionController } from '../controllers';
 import { AuctionService } from '../services';
 import auth from '../middlewares/auth';
-
 const router = express.Router();
 
 export class AuctionRoutes {
@@ -22,6 +21,7 @@ export class AuctionRoutes {
     this.router.get('/auction-history', auth, this.auctionController.getAuctionHistory);
     this.router.get('/auction-statistics', auth, this.auctionController.getAuctionStatistics);
 
+    
 
     }
 }
