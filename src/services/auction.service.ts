@@ -43,7 +43,6 @@ export class AuctionService {
     }
 
 
-  
   private async saveBidToHistory(bidder: string, amount: number): Promise<void> {
     try {
       const bid = new AuctionHistory({ bidder, amount, timestamp: new Date() });
@@ -92,5 +91,6 @@ export class AuctionService {
       throw new Error(error.message);
     }
   }
+
 
 }
