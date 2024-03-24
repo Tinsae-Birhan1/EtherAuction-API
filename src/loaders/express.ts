@@ -11,6 +11,8 @@ import { errorHandler, errorConverter } from '../middlewares/error';
 import ApiError from '../utils/ApiError';
 import { jwtStrategy } from '../config/passport';
 import { cspOptions, NODE_ENV } from '../config/config';
+import swaggerUi from 'swagger-ui-express';
+import swaggerOptions from '../../swaggerOptions';
 
 export default async function setup(app: Application): Promise<Application> {
   app.use(passport.initialize());
@@ -36,6 +38,9 @@ export default async function setup(app: Application): Promise<Application> {
 
   app.use(authRouter);
   const auctionRoutes = new AuctionRoutes();
+  const swaggerSpec = swaggerOptions;
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
   app.use(auctionRoutes.router);
   app.use((req: Request, res: Response, next: NextFunction) => {
     next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));

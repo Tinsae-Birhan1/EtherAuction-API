@@ -1,0 +1,27 @@
+/**
+ * @swagger
+ * /place-bid:
+ *   post:
+ *     summary: Place a bid on an auction
+ *     tags: [Auction]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               amount:
+ *                 type: number
+ *             required:
+ *               - amount
+ *     responses:
+ *       200:
+ *         description: Bid placed successfully
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       400:
+ *         $ref: '#/components/responses/BadRequestError'
+ */
