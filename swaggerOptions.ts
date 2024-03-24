@@ -10,13 +10,14 @@ const options = {
       version: '1.0.0',
       description: 'API documentation for the Auction system',
     },
+
     components: {
         securitySchemes: {
           bearerAuth: {
             type: 'http',
             scheme: 'bearer',
             bearerFormat: 'JWT',
-            example: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....', // Provide an example JWT token here
+            example: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....', 
           },
         },
       },
@@ -24,7 +25,7 @@ const options = {
       ...userPaths,
       ...auctionPaths,
     },
-    
+
     servers: [
       {
         url: 'http://localhost:4000', 
