@@ -78,4 +78,19 @@ export class AuctionService {
     }
   }
 
+  public async getAuctionStatistics(): Promise<any> {
+    try {
+      const totalBids = await this.contract.methods.totalBids().call();
+      const totalVolume = await this.contract.methods.totalVolume().call();
+
+      return {
+        totalBids,
+        totalVolume: this.web3.utils.fromWei(totalVolume, 'ether')
+      };
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+
 }

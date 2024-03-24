@@ -19,7 +19,10 @@ export class AuctionRoutes {
     this.router.post('/end-auction', this.auctionController.endAuction);
     this.router.get('/auction-details', this.auctionController.getAuctionDetails);
     this.router.get('/auction-history', this.auctionController.getAuctionHistory);
+    this.router.get('/auction-statistics', this.auctionController.getAuctionStatistics);
 
+
+   
 
   }
 }
