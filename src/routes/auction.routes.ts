@@ -20,7 +20,7 @@ export class AuctionRoutes {
     this.router.get('/auction-details', this.auctionController.getAuctionDetails);
     this.router.get('/auction-history', this.auctionController.getAuctionHistory);
 
-   
+
   }
 }
 
