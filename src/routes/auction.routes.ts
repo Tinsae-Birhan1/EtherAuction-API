@@ -1,6 +1,8 @@
 import express, { Router } from 'express';
 import { AuctionController } from '../controllers';
 import { AuctionService } from '../services';
+import auth from '../middlewares/auth';
+
 
 const router = express.Router();
 
@@ -15,16 +17,15 @@ export class AuctionRoutes {
   }
 
   private initializeRoutes(): void {
-    this.router.post('/place-bid', this.auctionController.placeBid);
-    this.router.post('/end-auction', this.auctionController.endAuction);
-    this.router.get('/auction-details', this.auctionController.getAuctionDetails);
-    this.router.get('/auction-history', this.auctionController.getAuctionHistory);
-    this.router.get('/auction-statistics', this.auctionController.getAuctionStatistics);
+    this.router.post('/place-bid',  auth, this.auctionController.placeBid);
+    this.router.post('/end-auction', auth, this.auctionController.endAuction);
+    this.router.get('/auction-details', auth, this.auctionController.getAuctionDetails);
+    this.router.get('/auction-history', auth, this.auctionController.getAuctionHistory);
+    this.router.get('/auction-statistics', auth, this.auctionController.getAuctionStatistics);
 
 
-   
+    }
 
-  }
 }
 
 export default router;
